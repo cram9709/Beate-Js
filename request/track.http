@@ -1,0 +1,27 @@
+###
+POST http://localhost:3000/tracks
+Content-Type: application/json
+
+  {
+   "artisName": "imagine Dragon",
+   "name": "invertebrado345",
+   "fileUrl": "https://www.youtube.com/watch?v=MSdU_4Se26I",
+   "albumName": "nose"
+  }
+
+###
+GET http://localhost:3000/tracks/i
+
+###
+PUT http://localhost:3000/tracks/619eb4d3abdb69bb2ce99b55
+Content-Type: application/json
+
+  {
+   "artisName": "Ricardo Arjona",
+   "name": "Te quiero",
+   "fileUrl": "https://www.youtube.com/watch?v=wjmxG7Z9STk",
+   "albumName": "Media Noche"
+  }
+
+###
+DELETE  http://localhost:3000/tracks/619eb4d3abdb69bb2ce99b55

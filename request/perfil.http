@@ -1,0 +1,25 @@
+###
+POST http://localhost:3000/perfiles
+Content-Type: application/json
+
+  {
+   "photo": "cram",
+   "firstName": "yo",
+   "lastName": "12335",
+   "isArtist": true,
+   "user": "619c5ebb0c16d014f3096bd4"
+
+
+  }
+
+###
+GET http://localhost:3000/perfiles/619c682d8df752e4b459f74b
+
+###
+PUT http://localhost:3000/perfiles/619c682d8df752e4b459f74b
+Content-Type: application/json
+
+  {
+   "photo": "OtraFoto",
+   "isArtist": true
+  }

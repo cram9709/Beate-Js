@@ -1,0 +1,10 @@
+###
+POST http://localhost:3000/registro
+Content-Type: application/json
+
+  {
+   "username": "cram",
+   "email": "cram@beate.com",
+   "password": "12335"
+
+  }

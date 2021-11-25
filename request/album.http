@@ -1,0 +1,22 @@
+
+###
+POST http://localhost:3000/album
+Content-Type: application/json
+
+  {
+   "artistName": "619c682d8df752e4b459f74b",
+   "name": "Media noche",
+   "coverUrl": [
+       {
+       "id": "0",
+       "url":"619eb332d074ec66db4fa8b4"
+       },
+       {
+        "id": "1",
+       "url":"619ec0fd1f8984c5cbfd7e53"
+       }
+   ]
+  }
+
+###
+GET http://localhost:3000/album/Media noche
