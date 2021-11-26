@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+
+const { create, addFollowers, deleteFollowing, deleteFollowers } = require('./usuario.controller');
+
+
+router.post('/', create);
+router.put('/', addFollowers);
+router.put('/deleteFollowing/', deleteFollowing)
+router.put('/deleteFollowers/', deleteFollowers)
+module.exports = router;

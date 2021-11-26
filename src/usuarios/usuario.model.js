@@ -23,7 +23,18 @@ const userSchema = new Schema({
     isAdmin:{
         type: Boolean,
         default: false
+    },
+    followers:{
+        type:[Schema.ObjectId],
+        ref: 'Profile',
+    },
+    following: {
+        type:[Schema.ObjectId],
+        ref:'Profile'
     }
 });
+
+
+
 
 module.exports = model('User', userSchema);

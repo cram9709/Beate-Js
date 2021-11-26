@@ -3,8 +3,36 @@ POST http://localhost:3000/registro
 Content-Type: application/json
 
   {
-   "username": "cram",
-   "email": "cram@beate.com",
+   "username": "user1",
+   "email": "user9709@beate.com",
    "password": "12335"
-
   }
+
+###
+PUT http://localhost:3000/registro/619c5ebb0c16d014f3096bd4
+Content-Type: application/json
+
+  {
+   "_id": "61a04d4f8dc2a8dc6e05fd7f"
+   
+  }
+
+
+###
+PUT http://localhost:3000/registro/deleteFollowing/619c5ebb0c16d014f3096bd4
+Content-Type: application/json
+
+  {
+   "_id": "61a04d4f8dc2a8dc6e05fd7f"
+  }
+
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+  {
+   "username": "user1",
+   "password": "12335"
+  }
+
