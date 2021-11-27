@@ -1,9 +1,10 @@
 const Album = require('./model');
 const Track = require('../tracks/model');
 
-exports.getOne = async ({ params: name }, res) => {
+exports.getOne = async ({ params: input }, res) => {
     try {
-        const result = await Album.findOne(name).populate('coverUrl');
+        const result = await Album.findOne({ search: new RegExp(input.name, "i") }).populate('coverUrl');
+        console.log(input)
         if (result) {
             console.log(result);
             res.status(200).json(result);
@@ -21,7 +22,7 @@ exports.create = async ({ body }, res) => {
     try {
         const newAlbum = await Album.create(body);
         console.log(newAlbum);
-        res.status(200).json('El album ha sido creado');
+        res.status(200).json('El álbum ha sido creado');
     } catch (error) {
         console.log(error);
         res.status(400)
@@ -33,7 +34,7 @@ exports.update = async ({ params: _id, body }, res) => {
         const result = await Album.findByIdAndUpdate(_id, body);
         console.log(result);
         if (result) {
-            res.status(200).json('Album actualizado')
+            res.status(200).json('Álbum actualizado')
         } else {
             res.status(400)
         }
@@ -66,9 +67,9 @@ exports.deleteOne = async ({ params: _id }, res) => {
         const result = await Album.findByIdAndDelete(_id);
         if (result) {
             console.log(result);
-            res.status(200).json('Album borrado');
+            res.status(200).json('Álbum borrado');
         } else {
-            res.status(400).json('No existe este album')
+            res.status(400).json('No existe este álbum')
         }
     } catch (error) {
         oconsole.log(error);

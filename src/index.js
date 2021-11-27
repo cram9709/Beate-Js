@@ -23,10 +23,10 @@ app.use(helmet());
 //     })
 // );
 
-app.use('/registro', require('./usuarios/registro'))
-app.use('/login', require('./usuarios/login'));
-app.use('/user', require('./usuarios'));
-app.use('/perfiles', require('./profile/profile.view'));
+app.use('/register', require('./users/register'))
+app.use('/login', require('./users/login'));
+app.use('/user', require('./users'));
+app.use('/profiles', require('./profile/profile.view'));
 app.use('/tracks', require('./tracks'));
 app.use('/album', require('./album'));
 app.use('/playlist', require('./playlist'));
