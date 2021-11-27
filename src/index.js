@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./db/db');
+require('./config');
 const express = require('express');
 const cors = require('cors')
 const expressJwt = require('express-jwt');
@@ -12,15 +13,15 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-app.use(
-    expressJwt({
-        secret: process.env.secret,
-        algorithms: ['HS256'],
-        requestProperty : process.env.requestProperty
-    }).unless({
-        path: ['/login', '/registro']
-    })
-);
+// app.use(
+//     expressJwt({
+//         secret: process.env.secret,
+//         algorithms: ['HS256'],
+//         requestProperty : process.env.requestProperty
+//     }).unless({
+//         path: ['/login', '/registro']
+//     })
+// );
 
 app.use('/registro', require('./usuarios/registro'))
 app.use('/login', require('./usuarios/login'));
@@ -32,5 +33,5 @@ app.use('/playlist', require('./playlist'));
 
 app.listen(PORT, () => {
     console.log("Corriento puerto " + PORT);
-})
+});
 

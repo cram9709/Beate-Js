@@ -1,8 +1,9 @@
 const Album = require('./model');
+const Track = require('../tracks/model');
 
 exports.getOne = async ({ params: name }, res) => {
     try {
-        const result = await Album.findOne(name).populate('artistName');
+        const result = await Album.findOne(name).populate('coverUrl');
         if (result) {
             console.log(result);
             res.status(200).json(result);
@@ -16,7 +17,7 @@ exports.getOne = async ({ params: name }, res) => {
     }
 }
 
-exports.create = async({ body }, res) => {
+exports.create = async ({ body }, res) => {
     try {
         const newAlbum = await Album.create(body);
         console.log(newAlbum);
@@ -40,6 +41,23 @@ exports.update = async ({ params: _id, body }, res) => {
         console.log(error);
         res.status(400)
 
+    }
+}
+
+exports.addTrack = async (req, res) => {
+    try {
+        const { name, _id } = req.body
+        const track = await Track.findOne(name);
+        if(track){
+            const album = await Album.findById(_id);
+            album.coverUrl.push(track._id);
+            await album.save()
+            console.log(album.coverUrl);
+            res.status(200).json('Hecho')
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(400).json('error')
     }
 }
 

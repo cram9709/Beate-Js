@@ -2,9 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const albumSchema = new Schema({
     artistName: {
-        type: Schema.ObjectId,
-        ref: 'Profile',
-        required: true
+        type: String,
     },
     name: {
         type: String,

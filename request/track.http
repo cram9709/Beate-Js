@@ -25,3 +25,12 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:3000/tracks/619eb4d3abdb69bb2ce99b55
+
+
+POST http://localhost:3000/tracks/subir
+Content-Type: application/json
+
+  {
+   "artisName": "Juanda Caribe",
+   "name": "El parquecito",
+  }
