@@ -49,12 +49,12 @@ exports.deleteOne = async ({ params: _id }, res) => {
         const result = await  PlayList.findByIdAndDelete(_id);
         if (result) {
             console.log(result);
-            res.status(200).json(' PlayList borrado');
+            res.status(200).json('PlayList eliminada');
         } else {
-            res.status(400).json('No existe esta  PlayList')
+            res.status(400).json('No existe esta PlayList')
         }
     } catch (error) {
-        console.log('error');
+        console.log('Error');
         res.status(400).json('Error');
     }
 }

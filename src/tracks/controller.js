@@ -11,7 +11,8 @@ exports.get = async ({ params: input }, res) => {
     try {
         let buscar = input
         const result = await Track.find({ name: new RegExp(buscar.input, "i") })
-        if (result) {
+        console.log(input)
+        if (result.length > 0) {  // Para evitar que devuelva un array vacío
             console.log(result);
             res.status(200).json(result);
         } else {
@@ -81,20 +82,18 @@ exports.update = async ({ params: _id, body }, res) => {
 
 exports.deleteOne = async ({ params: _id }, res) => {
     try {
-        const result = await PlayList.findByIdAndDelete(_id);
+        const result = await Track.findByIdAndDelete(_id);
         if (result) {
             console.log(result);
-            res.status(200).json('PlayList eliminada');
+            res.status(200).json('Track eliminado');
         } else {
             res.status(400).json('No existe')
         }
     } catch (error) {
-        console.log('error');
+        console.log('Error');
         res.status(400).json('Error');
     }
 }
-
-
 
 
 

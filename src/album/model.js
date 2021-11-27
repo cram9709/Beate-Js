@@ -1,23 +1,38 @@
-const { Schema, model } = require('mongoose');
+const {Schema, model} = require("mongoose");
 
-const albumSchema = new Schema({
+const albumSchema = new Schema(
+  {
     artistName: {
-        type: String,
+      type: String,
     },
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     coverUrl: {
-        type: [Schema.ObjectId],
-        ref: 'Track'
+      type: [Schema.ObjectId],
+      ref: "Track",
     },
     releaseDate: {
-        type: Date
+      type: Date,
     },
     createdDate: {
-        type: Date
-    }
+      type: Date,
+    },
+    search: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
+
+// Crear un valor de busqueda sin tildes y acentos
+albumSchema.pre("save", function (next) {
+  this.search = `${this.name}, ${this.name.normalize("NFD").replace(/[\u0300-\u0301]/gu, "")}`;
+  next();
 });
 
-module.exports = model('Album', albumSchema);
+module.exports = model("Album", albumSchema);
