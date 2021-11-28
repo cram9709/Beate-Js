@@ -16,6 +16,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    photo: {
+      type: String,
+    },
+    firstName: {
+      type: String,
+    },
+    lastName: String,
     isActive: {
       type: Boolean,
       default: true,
@@ -26,11 +33,11 @@ const userSchema = new Schema(
     },
     followers: {
       type: [Schema.ObjectId],
-      ref: "Profile",
+      ref: 'User',
     },
     following: {
       type: [Schema.ObjectId],
-      ref: "Profile",
+      ref: 'User',
     },
   },
   {
@@ -39,4 +46,4 @@ const userSchema = new Schema(
   }
 );
 
-module.exports = model("User", userSchema);
+module.exports = model('User', userSchema);

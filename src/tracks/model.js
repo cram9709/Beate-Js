@@ -1,5 +1,4 @@
 const {Schema, model} = require("mongoose");
-const profileModel = require("../profile/profile.model");
 
 const trackSchema = new Schema(
   {

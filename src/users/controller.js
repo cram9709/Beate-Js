@@ -1,7 +1,37 @@
 require('dotenv').config();
-const User = require('./user.model');
+const User = require('./model');
 const bcrypt = require('bcrypt');
 const JWT = require('jsonwebtoken');
+const cloudinary = require("cloudinary");
+
+
+exports.getUsername = async ({ params: { input } }, res) => {
+    try {
+        const result = await User.find({ username: new RegExp(input, "i") });
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.status(400).json({ message: 'No existe este usuario' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json('Error')
+    }
+}
+
+exports.getName = async ({ params: { input } }, res) => {
+    try {
+        const result = await User.find({ firstName: new RegExp(input, "i") });
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.status(400).json({ message: 'No existe este usuario' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json('Error')
+    }
+}
 
 exports.login = async (req, res) => {
     try {
@@ -13,8 +43,6 @@ exports.login = async (req, res) => {
         const {
             _id,
             password: passUser,
-            email,
-            isActive,
             isAdmin
         } = await User.findOne({ username });
 
@@ -23,8 +51,6 @@ exports.login = async (req, res) => {
             const token = JWT.sign({
                 _id,
                 username,
-                email,
-                isActive,
                 isAdmin
             }, process.env.secret)
             res.json({ token })
@@ -43,15 +69,32 @@ exports.create = async (req, res) => {
         const {
             username,
             email,
-            password
+            password,
+            firstName,
+            lastName,
+            photo
         } = req.body;
         const newUser = new User({
             username,
             email,
-            password: bcrypt.hashSync(password, parseInt(process.env.crypt))
+            password: bcrypt.hashSync(password, parseInt(process.env.crypt)),
+            firstName,
+            lastName,
+            photo
         });
-        const createUser = await newUser.save();
-        res.json(createUser);
+        const { _id, isAdmin } = await newUser.save();
+
+
+        //Generar token de acceso
+
+        const token = JWT.sign({
+            _id,
+            username,
+            isAdmin
+        }, process.env.secret)
+
+        res.json('Usuario registrado este es su token: ' + token)
+
     } catch (error) {
         console.log(error);
         res.status(404).json("Error");
@@ -59,6 +102,22 @@ exports.create = async (req, res) => {
     }
 }
 
+exports.uploadPhoto= async(req, res) => {
+
+    
+}
+
+exports.update = async (req, res) => {
+    try {
+        const { _id } = req.auth;
+        const { firstName, lastName } = req.body
+        const user = await User.findByIdAndUpdate(_id, {firstName, lastName});
+        console.log(user);
+        res.status(200).json('Actualizado')
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 exports.addFollowers = async (req, res) => {
@@ -78,7 +137,6 @@ exports.addFollowers = async (req, res) => {
             myUser.following.push(idUser._id);
             await myUser.save();
 
-            console.log(myUser.followers);
             res.status(200).json('Seguidor añadido')
         } else {
             console.log('error');

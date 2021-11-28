@@ -13,20 +13,19 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-// app.use(
-//     expressJwt({
-//         secret: process.env.secret,
-//         algorithms: ['HS256'],
-//         requestProperty : process.env.requestProperty
-//     }).unless({
-//         path: ['/login', '/registro']
-//     })
-// );
+app.use(
+    expressJwt({
+        secret: process.env.secret,
+        algorithms: ['HS256'],
+        requestProperty: process.env.requestProperty
+    }).unless({
+        path: ['/login', '/register']
+    })
+);
 
 app.use('/register', require('./users/register'))
 app.use('/login', require('./users/login'));
 app.use('/user', require('./users'));
-app.use('/profiles', require('./profile/profile.view'));
 app.use('/tracks', require('./tracks'));
 app.use('/album', require('./album'));
 app.use('/playlist', require('./playlist'));

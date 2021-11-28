@@ -1,20 +1,18 @@
 ###
-POST http://localhost:3000/perfiles
-Authorization: bearer 
+POST http://localhost:3000/profiles
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWEzZDdlNzhkNmJmYmUyZDM5ZWQ4MjgiLCJ1c2VybmFtZSI6InVzZXIxIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzODEyNzU5MX0.X5koM5fGzLZKFp1cfgXUh5oXK-QB211s61YhRRTS0QQ
 Content-Type: application/json
 
   {
-   "photo": "cram",
-   "firstName": "yo",
+   "photo": "user2",
+   "firstName": "yo1",
    "lastName": "12335",
-   "isArtist": true,
-   "user": "619c5ebb0c16d014f3096bd4"
-
-
+   "isArtist": true
   }
 
 ###
-GET http://localhost:3000/perfiles/619c682d8df752e4b459f74b
+GET http://localhost:3000/profiles/user
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWEzZDE2ODFmYzZiYmZlNjdmNTExYTEiLCJ1c2VybmFtZSI6InVzZXIxIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzODEyNTkyOH0.00sPJfARBkZW8XwA0u2EBcvjWSzJuASP21dLrfMSxnc
 
 ###
 PUT http://localhost:3000/perfiles/619c682d8df752e4b459f74b
