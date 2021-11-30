@@ -102,20 +102,33 @@ exports.create = async (req, res) => {
     }
 }
 
-exports.uploadPhoto= async(req, res) => {
+exports.uploadPhoto = async (req, res) => {
+    try {
+        const { _id } = req.auth;
+        const user = await User.findById(_id);
 
-    
+        const file = await cloudinary.v2.uploader.upload(
+            "imgen.jpg"
+        );
+        
+        user.photo = file.secure_url;
+        await user.save();
+    } catch (error) {
+
+    }
+
 }
 
 exports.update = async (req, res) => {
     try {
         const { _id } = req.auth;
         const { firstName, lastName } = req.body
-        const user = await User.findByIdAndUpdate(_id, {firstName, lastName});
+        const user = await User.findByIdAndUpdate(_id, { firstName, lastName });
         console.log(user);
         res.status(200).json('Actualizado')
     } catch (error) {
         console.log(error);
+        res.status(404).json(error)
     }
 }
 

@@ -3,15 +3,15 @@ GET http://localhost:3000/user/user
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWEzZTVkZWUwMjNkMmY4OGQ4MmZjY2EiLCJ1c2VybmFtZSI6ImNyYW0iLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjM4MTMxMTY2fQ.DzaHkECPlkKqTDoypAFrEPWo9Ao9Lmoy_s-x4trzMig
 
 ###
-POST http://localhost:3000/register
+POST https://frozen-ocean-48761.herokuapp.com/register
 Content-Type: application/json
 
   {
    "username": "cram",
    "email": "cram9709@beate.com",
    "password": "12335",
-   "firstName": "juan",
-   "lastName": "yuca",
+   "firstName": "Cristian",
+   "lastName": "rafael",
    "photo": ""
   }
 

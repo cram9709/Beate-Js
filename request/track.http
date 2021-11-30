@@ -1,10 +1,11 @@
 ###
 POST http://localhost:3000/tracks
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWEzZGFlZTg0Nzc3M2Q2M2UyOTdhMjMiLCJ1c2VybmFtZSI6InVzZXIxIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzODIxODk5MH0.y8mDsFnjCeZ_5CpI-YyoF8XxAvsiOLC7Hpr5C9t9aSI
 Content-Type: application/json
 
   {
-   "artisName": "imagine Dragon",
-   "name": "invertebrado345",
+   "artistName": "juanda caribe",
+   "name": "el parquecito",
    "fileUrl": "https://www.youtube.com/watch?v=MSdU_4Se26I",
    "albumName": "nose"
   }

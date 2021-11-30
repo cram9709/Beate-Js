@@ -1,0 +1,29 @@
+
+###
+POST http://localhost:3000/playList
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWEzZGFlZTg0Nzc3M2Q2M2UyOTdhMjMiLCJ1c2VybmFtZSI6InVzZXIxIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzODIxODk5MH0.y8mDsFnjCeZ_5CpI-YyoF8XxAvsiOLC7Hpr5C9t9aSI
+Content-Type: application/json
+
+  {
+   "name": "las mejores"
+   }
+
+
+###
+PUT http://localhost:3000/playList/addtrack/61a540103d210479af35dfd9
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWEzZGFlZTg0Nzc3M2Q2M2UyOTdhMjMiLCJ1c2VybmFtZSI6InVzZXIxIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzODIxODk5MH0.y8mDsFnjCeZ_5CpI-YyoF8XxAvsiOLC7Hpr5C9t9aSI
+Content-Type: application/json
+
+  {
+   "idTrack": "61a53d61e4f8f8b846bdeed3"
+   }
+
+
+###
+PUT http://localhost:3000/playList/deletetrack/61a540103d210479af35dfd9
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWEzZGFlZTg0Nzc3M2Q2M2UyOTdhMjMiLCJ1c2VybmFtZSI6InVzZXIxIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzODIxODk5MH0.y8mDsFnjCeZ_5CpI-YyoF8XxAvsiOLC7Hpr5C9t9aSI
+Content-Type: application/json
+
+  {
+   "idTrack": "61a53d61e4f8f8b846bdeed3"
+   }

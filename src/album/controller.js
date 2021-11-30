@@ -3,7 +3,7 @@ const Track = require('../tracks/model');
 
 exports.getOne = async ({ params: input }, res) => {
     try {
-        const result = await Album.findOne({ search: new RegExp(input.name, "i") }).populate('coverUrl');
+        const result = await Album.find({ search: new RegExp(input.name, "i") }).populate('coverUrl');
         console.log(input)
         if (result) {
             console.log(result);
@@ -47,18 +47,41 @@ exports.update = async ({ params: _id, body }, res) => {
 
 exports.addTrack = async (req, res) => {
     try {
-        const { name, _id } = req.body
-        const track = await Track.findOne(name);
-        if(track){
-            const album = await Album.findById(_id);
-            album.coverUrl.push(track._id);
-            await album.save()
-            console.log(album.coverUrl);
-            res.status(200).json('Hecho')
+        const { _id } = req.params;
+        const { idTrack } = req.body;
+        const track = await Track.findById(idTrack);
+        const playList = await Album.findByIdAndUpdate(_id, { $push: { "coverUrl": idTrack } });
+        if (playList && track){
+            console.log(playList);
+            res.status(200).json('Track añadido');
+        }else{
+            console.log('no existe la playlist');
         }
     } catch (error) {
         console.log(error);
-        res.status(400).json('error')
+        res.json(error)
+    }
+}
+
+exports.deleteTrack = async (req,res) => {
+    try {
+        try {
+            const { _id } = req.params;
+            const { idTrack } = req.body;
+            const playList = await Album.findByIdAndUpdate(_id, { $pull: { "coverUrl": idTrack } });
+            if (playList){
+                console.log(playList);
+                res.status(200).json('Track eliminado');
+            }else{
+                console.log('no existe la playlist');
+            }
+        } catch (error) {
+            console.log(error);
+            res.json(error)
+        }
+    } catch (error) {
+        console.log(error);
+        res.json(error);
     }
 }
 

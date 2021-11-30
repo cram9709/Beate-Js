@@ -13,7 +13,6 @@ const playListSchema = new Schema(
     songs: {
       type: [Schema.ObjectId],
       ref: "Track",
-      required: true,
     },
   },
   {
