@@ -50,7 +50,7 @@ exports.addTrack = async (req, res) => {
         const { _id } = req.params;
         const { idTrack } = req.body;
         const track = await Track.findById(idTrack);
-        const playList = await Album.findByIdAndUpdate(_id, { $push: { "coverUrl": idTrack } });
+        const playList = await Album.findByIdAndUpdate(_id, { $push: { "tracks": idTrack } });
         if (playList && track){
             console.log(playList);
             res.status(200).json('Track añadido');
@@ -68,7 +68,7 @@ exports.deleteTrack = async (req,res) => {
         try {
             const { _id } = req.params;
             const { idTrack } = req.body;
-            const playList = await Album.findByIdAndUpdate(_id, { $pull: { "coverUrl": idTrack } });
+            const playList = await Album.findByIdAndUpdate(_id, { $pull: { "tracks": idTrack } });
             if (playList){
                 console.log(playList);
                 res.status(200).json('Track eliminado');
